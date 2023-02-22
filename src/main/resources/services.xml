@@ -13,13 +13,18 @@
 
     <context:property-placeholder location="classpath:application.properties"/>
 
-    <mongo:mongo-client id="mongo" connection-string="mongodb://romanko:Way_0804@localhost:27017" replica-set="mongodb-task-manager-rs"/>
+    <mongo:mongo-client id="mongo" connection-string="mongodb://${spring.data.mongodb.username}:${spring.data.mongodb.password}@${spring.data.mongodb.host}:${spring.data.mongodb.port}" replica-set="mongodb-task-manager-rs"/>
     <mongo:db-factory id="mongoDbFactory" dbname="task-manager" mongo-client-ref="mongo"  />
+    <mongo:repositories base-package="com.epam.mentoring.nosql.task.manager.app.repository" />
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg ref="mongoDbFactory"/>
     </bean>
 
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <bean class="com.epam.mentoring.nosql.task.manager.app.service.TaskService">
+        <constructor-arg ref="taskRepository"/>
+    </bean>
 
 </beans>
