@@ -2,12 +2,24 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
        xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            https://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context
-                           https://www.springframework.org/schema/context/spring-context.xsd">
+                           https://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/data/mongo
+                           https://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
     <context:property-placeholder location="classpath:application.properties"/>
+
+    <mongo:mongo-client id="mongo" connection-string="mongodb://romanko:Way_0804@localhost:27017" replica-set="mongodb-task-manager-rs"/>
+    <mongo:db-factory id="mongoDbFactory" dbname="task-manager" mongo-client-ref="mongo"  />
+
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongoDbFactory"/>
+    </bean>
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
 </beans>
