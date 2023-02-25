@@ -27,4 +27,5 @@
         <constructor-arg ref="taskRepository"/>
     </bean>
 
+    <bean id="inputCommandExtractor" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.InputCommandExtractor"/>
 </beans>
