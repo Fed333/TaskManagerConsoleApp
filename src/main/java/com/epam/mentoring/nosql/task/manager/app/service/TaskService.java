@@ -4,6 +4,7 @@ import com.epam.mentoring.nosql.task.manager.app.entity.Task;
 import com.epam.mentoring.nosql.task.manager.app.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -15,4 +16,7 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+    public List<Task> findOverdue() {
+        return taskRepository.findAllByDeadlineLessThan(LocalDateTime.now());
+    }
 }

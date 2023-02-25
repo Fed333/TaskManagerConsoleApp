@@ -23,9 +23,26 @@
 
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
-    <bean class="com.epam.mentoring.nosql.task.manager.app.service.TaskService">
+    <bean id="taskService" class="com.epam.mentoring.nosql.task.manager.app.service.TaskService">
         <constructor-arg ref="taskRepository"/>
     </bean>
 
+    <bean id="displayTaskCommand" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.command.impl.DisplayTasksCommand">
+        <constructor-arg ref="taskService"/>
+    </bean>
+
+    <bean class="com.epam.mentoring.nosql.task.manager.app.service.TaskManagerRunnerService">
+        <constructor-arg ref="dispatcherCommand"/>
+    </bean>
+
     <bean id="inputCommandExtractor" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.InputCommandExtractor"/>
+
+    <bean id="dispatcherCommand" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.DispatcherCommand">
+        <constructor-arg>
+            <map>
+                <entry key="display-tasks" value-ref="displayTaskCommand"/>
+            </map>
+        </constructor-arg>
+        <constructor-arg ref="inputCommandExtractor"/>
+    </bean>
 </beans>
