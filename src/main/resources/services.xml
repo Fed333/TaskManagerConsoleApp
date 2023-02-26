@@ -37,6 +37,7 @@
                 <entry key="display-subtasks" value-ref="displaySubtaskCommand"/>
                 <entry key="insert-task" value-ref="insertTaskCommand"/>
                 <entry key="update-task" value-ref="updateTaskCommand"/>
+                <entry key="delete-task" value-ref="deleteTaskCommand"/>
             </map>
         </constructor-arg>
         <constructor-arg ref="inputCommandExtractor"/>
@@ -72,6 +73,11 @@
     </bean>
 
     <bean id="updateTaskCommand" class="com.epam.mentoring.nosql.task.manager.app.dispatcher.command.impl.UpdateTaskCommand">
+        <constructor-arg ref="taskService"/>
+        <constructor-arg ref="commandResultPrinter"/>
+    </bean>
+
+    <bean id="deleteTaskCommand" class="com.epam.mentoring.nosql.task.manager.app.dispatcher.command.impl.DeleteTaskCommand">
         <constructor-arg ref="taskService"/>
         <constructor-arg ref="commandResultPrinter"/>
     </bean>

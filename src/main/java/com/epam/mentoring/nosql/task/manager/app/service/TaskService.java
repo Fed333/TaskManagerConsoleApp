@@ -18,6 +18,10 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
+    public void delete(Task task) {
+        taskRepository.delete(task);
+    }
+
     public Optional<Task> findById(String id) {
         return taskRepository.findById(id);
     }
