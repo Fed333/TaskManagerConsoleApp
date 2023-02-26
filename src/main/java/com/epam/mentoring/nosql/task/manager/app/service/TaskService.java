@@ -7,11 +7,20 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class TaskService {
 
     private final TaskRepository taskRepository;
+
+    public Task save(Task task) {
+        return taskRepository.save(task);
+    }
+
+    public Optional<Task> findById(String id) {
+        return taskRepository.findById(id);
+    }
 
     public List<Task> findAll() {
         return taskRepository.findAll();

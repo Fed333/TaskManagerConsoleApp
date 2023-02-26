@@ -5,7 +5,6 @@ import com.epam.mentoring.nosql.task.manager.app.entity.Category;
 import com.epam.mentoring.nosql.task.manager.app.entity.Task;
 import com.epam.mentoring.nosql.task.manager.app.service.TaskService;
 import com.epam.mentoring.nosql.task.manager.app.dispatcher.command.ConsoleCommand;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -30,6 +29,6 @@ public class DisplayTasksCommand implements ConsoleCommand {
         } else if (params.containsKey("--overdue")) {
             tasks = taskService.findOverdue();
         }
-       commandResultPrinter.printOut(tasks);
+       commandResultPrinter.printJsonOut(tasks);
     }
 }

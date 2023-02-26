@@ -5,8 +5,6 @@ import com.epam.mentoring.nosql.task.manager.app.dispatcher.command.ConsoleComma
 import com.epam.mentoring.nosql.task.manager.app.dto.RelatedSubtasksDTO;
 import com.epam.mentoring.nosql.task.manager.app.entity.Category;
 import com.epam.mentoring.nosql.task.manager.app.service.SubtaskService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -30,6 +28,6 @@ public class DisplaySubtaskCommand implements ConsoleCommand {
                 relatedSubtasks = subtaskService.findAll();
             }
         }
-        commandResultPrinter.printOut(relatedSubtasks);
+        commandResultPrinter.printJsonOut(relatedSubtasks);
     }
 }

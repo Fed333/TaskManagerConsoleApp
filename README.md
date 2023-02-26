@@ -18,3 +18,4 @@
 * <b>display-tasks --overdue</b> - display overdue tasks.
 * <b>display-tasks --all --category=category_name</b> - display all tasks with the specific category (query parameter).
 * <b>display-subtasks --all --category=category_name</b> - display all subtasks related to tasks with the specific category (query parameter).
+* <b>insert-task --name=name --description=description --deadline=yyyy-MM-ddTHH:mm:ss --category=category_name</b> - Perform insert of the task.

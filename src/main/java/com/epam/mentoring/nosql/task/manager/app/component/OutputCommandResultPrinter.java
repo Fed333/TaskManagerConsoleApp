@@ -9,13 +9,17 @@ public class OutputCommandResultPrinter {
 
     private final ObjectMapper objectMapper;
 
-    public void printOut(Object object) {
+    public void printJsonOut(Object object) {
         try {
             String jsonTasks = objectMapper.writeValueAsString(object);
             System.out.println(jsonTasks);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void printStringOut(String out) {
+        System.out.println(out);
     }
 
 }
