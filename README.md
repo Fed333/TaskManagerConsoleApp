@@ -19,3 +19,4 @@
 * <b>display-tasks --all --category=category_name</b> - display all tasks with the specific category (query parameter).
 * <b>display-subtasks --all --category=category_name</b> - display all subtasks related to tasks with the specific category (query parameter).
 * <b>insert-task --name=name --description=description --deadline=yyyy-MM-ddTHH:mm:ss --category=category_name</b> - Perform insert of the task.
+* <b>update-task  --id=required_value --name=optional_name --description=optional_description --deadline=optional_yyyy-MM-ddTHH:mm:ss --category=optional_category_name</b> - Perform update of the task.
