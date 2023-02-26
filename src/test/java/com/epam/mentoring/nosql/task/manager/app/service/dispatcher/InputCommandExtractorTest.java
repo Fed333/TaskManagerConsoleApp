@@ -1,5 +1,6 @@
 package com.epam.mentoring.nosql.task.manager.app.service.dispatcher;
 
+import com.epam.mentoring.nosql.task.manager.app.dispatcher.InputCommandExtractor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

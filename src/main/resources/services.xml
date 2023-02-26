@@ -30,7 +30,7 @@
         <constructor-arg ref="dispatcherCommand"/>
     </bean>
 
-    <bean id="dispatcherCommand" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.DispatcherCommand">
+    <bean id="dispatcherCommand" class="com.epam.mentoring.nosql.task.manager.app.dispatcher.DispatcherCommand">
         <constructor-arg>
             <map>
                 <entry key="display-tasks" value-ref="displayTaskCommand"/>
@@ -40,9 +40,9 @@
         <constructor-arg ref="inputCommandExtractor"/>
     </bean>
 
-    <bean id="inputCommandExtractor" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.InputCommandExtractor"/>
+    <bean id="inputCommandExtractor" class="com.epam.mentoring.nosql.task.manager.app.dispatcher.InputCommandExtractor"/>
 
-    <bean id="displayTaskCommand" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.command.impl.DisplayTasksCommand">
+    <bean id="displayTaskCommand" class="com.epam.mentoring.nosql.task.manager.app.dispatcher.command.impl.DisplayTasksCommand">
         <constructor-arg ref="taskService"/>
         <constructor-arg ref="objectMapper"/>
     </bean>
@@ -51,7 +51,7 @@
         <constructor-arg ref="taskRepository"/>
     </bean>
 
-    <bean id="displaySubtaskCommand" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.command.impl.DisplaySubtaskCommand">
+    <bean id="displaySubtaskCommand" class="com.epam.mentoring.nosql.task.manager.app.dispatcher.command.impl.DisplaySubtaskCommand">
         <constructor-arg ref="subtaskService"/>
         <constructor-arg ref="objectMapper"/>
     </bean>

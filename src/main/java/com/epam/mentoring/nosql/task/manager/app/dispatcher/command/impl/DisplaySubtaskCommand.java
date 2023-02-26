@@ -1,9 +1,9 @@
-package com.epam.mentoring.nosql.task.manager.app.service.dispatcher.command.impl;
+package com.epam.mentoring.nosql.task.manager.app.dispatcher.command.impl;
 
+import com.epam.mentoring.nosql.task.manager.app.dispatcher.command.ConsoleCommand;
 import com.epam.mentoring.nosql.task.manager.app.dto.RelatedSubtasksDTO;
 import com.epam.mentoring.nosql.task.manager.app.entity.Category;
 import com.epam.mentoring.nosql.task.manager.app.service.SubtaskService;
-import com.epam.mentoring.nosql.task.manager.app.service.dispatcher.command.ConsoleCommand;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class DisplaySubtaskCommand implements ConsoleCommand {

@@ -1,6 +1,6 @@
 package com.epam.mentoring.nosql.task.manager.app.service;
 
-import com.epam.mentoring.nosql.task.manager.app.service.dispatcher.DispatcherCommand;
+import com.epam.mentoring.nosql.task.manager.app.dispatcher.DispatcherCommand;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Scanner;
