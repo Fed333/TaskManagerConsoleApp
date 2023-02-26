@@ -12,10 +12,13 @@
                            https://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
     <context:property-placeholder location="classpath:application.properties"/>
+    <context:annotation-config/>
 
     <mongo:mongo-client id="mongo" connection-string="mongodb://${spring.data.mongodb.username}:${spring.data.mongodb.password}@${spring.data.mongodb.host}:${spring.data.mongodb.port}" replica-set="mongodb-task-manager-rs"/>
     <mongo:db-factory id="mongoDbFactory" dbname="task-manager" mongo-client-ref="mongo"  />
     <mongo:repositories base-package="com.epam.mentoring.nosql.task.manager.app.repository" />
+
+    <bean class="com.epam.mentoring.nosql.task.manager.app.configuration.JacksonConfiguration"/>
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg ref="mongoDbFactory"/>
@@ -23,26 +26,38 @@
 
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
-    <bean id="taskService" class="com.epam.mentoring.nosql.task.manager.app.service.TaskService">
-        <constructor-arg ref="taskRepository"/>
-    </bean>
-
-    <bean id="displayTaskCommand" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.command.impl.DisplayTasksCommand">
-        <constructor-arg ref="taskService"/>
-    </bean>
-
     <bean class="com.epam.mentoring.nosql.task.manager.app.service.TaskManagerRunnerService">
         <constructor-arg ref="dispatcherCommand"/>
     </bean>
-
-    <bean id="inputCommandExtractor" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.InputCommandExtractor"/>
 
     <bean id="dispatcherCommand" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.DispatcherCommand">
         <constructor-arg>
             <map>
                 <entry key="display-tasks" value-ref="displayTaskCommand"/>
+                <entry key="display-subtasks" value-ref="displaySubtaskCommand"/>
             </map>
         </constructor-arg>
         <constructor-arg ref="inputCommandExtractor"/>
     </bean>
+
+    <bean id="inputCommandExtractor" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.InputCommandExtractor"/>
+
+    <bean id="displayTaskCommand" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.command.impl.DisplayTasksCommand">
+        <constructor-arg ref="taskService"/>
+        <constructor-arg ref="objectMapper"/>
+    </bean>
+
+    <bean id="taskService" class="com.epam.mentoring.nosql.task.manager.app.service.TaskService">
+        <constructor-arg ref="taskRepository"/>
+    </bean>
+
+    <bean id="displaySubtaskCommand" class="com.epam.mentoring.nosql.task.manager.app.service.dispatcher.command.impl.DisplaySubtaskCommand">
+        <constructor-arg ref="subtaskService"/>
+        <constructor-arg ref="objectMapper"/>
+    </bean>
+
+    <bean id="subtaskService" class="com.epam.mentoring.nosql.task.manager.app.service.SubtaskService">
+        <constructor-arg ref="taskRepository"/>
+    </bean>
+
 </beans>

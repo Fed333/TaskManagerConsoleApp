@@ -14,6 +14,7 @@
 <hr>
 
 ### Commands
-* display-tasks --all - display on console all tasks.
-* display-tasks --overdue - display overdue tasks.
-* display-tasks --all --category=category_name - display all tasks with the specific category (query parameter).
+* <b>display-tasks --all</b> - display on console all tasks.
+* <b>display-tasks --overdue</b> - display overdue tasks.
+* <b>display-tasks --all --category=category_name</b> - display all tasks with the specific category (query parameter).
+* <b>display-subtasks --all --category=category_name</b> - display all subtasks related to tasks with the specific category (query parameter).
