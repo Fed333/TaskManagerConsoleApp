@@ -1,5 +1,6 @@
 package com.epam.mentoring.nosql.task.manager.app.dispatcher;
 
+import com.epam.mentoring.nosql.task.manager.app.component.InputCommandExtractor;
 import com.epam.mentoring.nosql.task.manager.app.dispatcher.command.ConsoleCommand;
 import lombok.RequiredArgsConstructor;
 

@@ -1,5 +1,6 @@
 package com.epam.mentoring.nosql.task.manager.app.dispatcher.command.impl;
 
+import com.epam.mentoring.nosql.task.manager.app.component.OutputCommandResultPrinter;
 import com.epam.mentoring.nosql.task.manager.app.dispatcher.command.ConsoleCommand;
 import com.epam.mentoring.nosql.task.manager.app.dto.RelatedSubtasksDTO;
 import com.epam.mentoring.nosql.task.manager.app.entity.Category;
@@ -17,7 +18,7 @@ public class DisplaySubtaskCommand implements ConsoleCommand {
 
     private final SubtaskService subtaskService;
 
-    private final ObjectMapper objectMapper;
+    private final OutputCommandResultPrinter commandResultPrinter;
 
     @Override
     public void process(Map<String, Object> params) {
@@ -29,11 +30,6 @@ public class DisplaySubtaskCommand implements ConsoleCommand {
                 relatedSubtasks = subtaskService.findAll();
             }
         }
-        try {
-            String jsonTasks = objectMapper.writeValueAsString(relatedSubtasks);
-            System.out.println(jsonTasks);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        commandResultPrinter.printOut(relatedSubtasks);
     }
 }

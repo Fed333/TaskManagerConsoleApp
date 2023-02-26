@@ -1,11 +1,11 @@
 package com.epam.mentoring.nosql.task.manager.app.dispatcher.command.impl;
 
+import com.epam.mentoring.nosql.task.manager.app.component.OutputCommandResultPrinter;
 import com.epam.mentoring.nosql.task.manager.app.entity.Category;
 import com.epam.mentoring.nosql.task.manager.app.entity.Task;
 import com.epam.mentoring.nosql.task.manager.app.service.TaskService;
 import com.epam.mentoring.nosql.task.manager.app.dispatcher.command.ConsoleCommand;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class DisplayTasksCommand implements ConsoleCommand {
 
     private final TaskService taskService;
 
-    private final ObjectMapper objectMapper;
+    private final OutputCommandResultPrinter commandResultPrinter;
 
     @Override
     public void process(Map<String, Object> params) {
@@ -30,11 +30,6 @@ public class DisplayTasksCommand implements ConsoleCommand {
         } else if (params.containsKey("--overdue")) {
             tasks = taskService.findOverdue();
         }
-        try {
-            String jsonTasks = objectMapper.writeValueAsString(tasks);
-            System.out.println(jsonTasks);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+       commandResultPrinter.printOut(tasks);
     }
 }

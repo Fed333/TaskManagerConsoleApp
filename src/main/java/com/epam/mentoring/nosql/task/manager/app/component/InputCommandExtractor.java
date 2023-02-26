@@ -1,4 +1,4 @@
-package com.epam.mentoring.nosql.task.manager.app.dispatcher;
+package com.epam.mentoring.nosql.task.manager.app.component;
 
 import java.util.Arrays;
 import java.util.Map;
