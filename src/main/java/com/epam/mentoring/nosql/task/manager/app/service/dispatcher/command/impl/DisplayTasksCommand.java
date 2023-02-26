@@ -1,5 +1,6 @@
 package com.epam.mentoring.nosql.task.manager.app.service.dispatcher.command.impl;
 
+import com.epam.mentoring.nosql.task.manager.app.entity.Category;
 import com.epam.mentoring.nosql.task.manager.app.entity.Task;
 import com.epam.mentoring.nosql.task.manager.app.service.TaskService;
 import com.epam.mentoring.nosql.task.manager.app.service.dispatcher.command.ConsoleCommand;
@@ -20,7 +21,11 @@ public class DisplayTasksCommand implements ConsoleCommand {
     public void process(Map<String, Object> params) {
         List<Task> tasks = null;
         if (params.containsKey("--all")){
-            tasks = taskService.findAll();
+            if (params.containsKey("--category")){
+                tasks = taskService.findAllByCategory(Category.valueOf(params.get("--category").toString().toUpperCase()));
+            } else {
+                tasks = taskService.findAll();
+            }
         } else if (params.containsKey("--overdue")) {
             tasks = taskService.findOverdue();
         }

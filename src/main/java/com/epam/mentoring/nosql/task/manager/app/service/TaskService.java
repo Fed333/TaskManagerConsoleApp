@@ -1,5 +1,6 @@
 package com.epam.mentoring.nosql.task.manager.app.service;
 
+import com.epam.mentoring.nosql.task.manager.app.entity.Category;
 import com.epam.mentoring.nosql.task.manager.app.entity.Task;
 import com.epam.mentoring.nosql.task.manager.app.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,10 @@ public class TaskService {
 
     public List<Task> findAll() {
         return taskRepository.findAll();
+    }
+
+    public List<Task> findAllByCategory(Category category) {
+        return taskRepository.findAllByCategory(category);
     }
 
     public List<Task> findOverdue() {
