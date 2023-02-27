@@ -25,3 +25,4 @@
 * <b>update-subtask --taskId=required value --subtask=required value --name=optional subtask name --description=optional subtask description</b> - Perform update all subtask of the given task.
 * <b>delete-subtask --taskId=required value --subtask=required value</b> - perform delete all subtask of the given task.
 * <b>search-tasks --word=search word</b> - support full-text search by word in task description.
+* <b>search-subtasks --name=search name</b> - support full-text search by sub-task name.
