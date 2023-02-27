@@ -37,4 +37,8 @@ public class TaskService {
     public List<Task> findOverdue() {
         return taskRepository.findAllByDeadlineLessThan(LocalDateTime.now());
     }
+
+    public List<Task> findAllByWordInDescription(String word) {
+        return taskRepository.findAllByRegexpDescription(word);
+    }
 }
