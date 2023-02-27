@@ -9,7 +9,7 @@ public class OutputCommandResultPrinter {
 
     private final ObjectMapper objectMapper;
 
-    public void printJsonOut(Object object) {
+    public void printlnJsonOut(Object object) {
         try {
             String jsonTasks = objectMapper.writeValueAsString(object);
             System.out.println(jsonTasks);
@@ -18,8 +18,12 @@ public class OutputCommandResultPrinter {
         }
     }
 
-    public void printStringOut(String out) {
+    public void printlnStringOut(String out) {
         System.out.println(out);
+    }
+
+    public void printStringOut(String out) {
+        System.out.print(out);
     }
 
 }

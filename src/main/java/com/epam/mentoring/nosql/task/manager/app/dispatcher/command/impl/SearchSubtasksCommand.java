@@ -17,10 +17,10 @@ public class SearchSubtasksCommand implements ConsoleCommand {
     @Override
     public void process(Map<String, Object> params) {
         if (!params.containsKey("--name")){
-            commandResultPrinter.printStringOut("Cannot search subtasks by name! Name wasn't provided.");
+            commandResultPrinter.printlnStringOut("Cannot search subtasks by name! Name wasn't provided.");
             return;
         }
         String name = params.get("--name").toString();
-        commandResultPrinter.printJsonOut(taskService.findAllByName(name));
+        commandResultPrinter.printlnJsonOut(taskService.findAllByName(name));
     }
 }

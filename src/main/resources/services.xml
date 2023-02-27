@@ -28,6 +28,7 @@
 
     <bean class="com.epam.mentoring.nosql.task.manager.app.service.TaskManagerRunnerService">
         <constructor-arg ref="dispatcherCommand"/>
+        <constructor-arg ref="commandResultPrinter"/>
     </bean>
 
     <bean id="dispatcherCommand" class="com.epam.mentoring.nosql.task.manager.app.dispatcher.DispatcherCommand">

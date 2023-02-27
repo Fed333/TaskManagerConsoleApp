@@ -17,10 +17,10 @@ public class SearchTasksCommand implements ConsoleCommand {
     @Override
     public void process(Map<String, Object> params) {
         if (!params.containsKey("--word")){
-            commandResultPrinter.printStringOut("Cannot search tasks by word in the description! Word wasn't provided.");
+            commandResultPrinter.printlnStringOut("Cannot search tasks by word in the description! Word wasn't provided.");
             return;
         }
         String word = params.get("--word").toString();
-        commandResultPrinter.printJsonOut(taskService.findAllByWordInDescription(word));
+        commandResultPrinter.printlnJsonOut(taskService.findAllByWordInDescription(word));
     }
 }

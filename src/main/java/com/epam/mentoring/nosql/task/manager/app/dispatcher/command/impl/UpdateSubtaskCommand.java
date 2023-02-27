@@ -7,8 +7,6 @@ import com.epam.mentoring.nosql.task.manager.app.entity.Task;
 import com.epam.mentoring.nosql.task.manager.app.service.TaskService;
 import lombok.RequiredArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -23,11 +21,11 @@ public class UpdateSubtaskCommand implements ConsoleCommand {
     @Override
     public void process(Map<String, Object> params) {
         if (!params.containsKey("--taskId")){
-            commandResultPrinter.printStringOut("Cannot update subtask! Missing task id.");
+            commandResultPrinter.printlnStringOut("Cannot update subtask! Missing task id.");
             return;
         }
         if (!params.containsKey("--subtask")){
-            commandResultPrinter.printStringOut("Cannot update subtask! Missing subtask number.");
+            commandResultPrinter.printlnStringOut("Cannot update subtask! Missing subtask number.");
             return;
         }
         String taskId = params.get("--taskId").toString();
@@ -38,7 +36,7 @@ public class UpdateSubtaskCommand implements ConsoleCommand {
                     subtasks -> {
                         long start = System.nanoTime();
                         if (subtasks.size() < subtaskIndex){
-                            commandResultPrinter.printStringOut("Cannot update subtask! Task with id: " + taskId + " doesn't have subtask with number: " + subtaskIndex);
+                            commandResultPrinter.printlnStringOut("Cannot update subtask! Task with id: " + taskId + " doesn't have subtask with number: " + subtaskIndex);
                             return;
                         }
                         Subtask subtask = subtasks.get(subtaskIndex);
@@ -51,12 +49,12 @@ public class UpdateSubtaskCommand implements ConsoleCommand {
                                 "Updated subtask", subtask,
                                 "Time", TimeUnit.NANOSECONDS.toMillis(end - start) + " ms."
                         );
-                        commandResultPrinter.printJsonOut(result);
+                        commandResultPrinter.printlnJsonOut(result);
                     },
-                    () -> commandResultPrinter.printStringOut("Cannot update subtask! Task with id: " + taskId + " doesn't have subtask with number: " + subtaskIndex)
+                    () -> commandResultPrinter.printlnStringOut("Cannot update subtask! Task with id: " + taskId + " doesn't have subtask with number: " + subtaskIndex)
             );
         }, () -> {
-            commandResultPrinter.printJsonOut("Cannot update subtask! No task with id: " + taskId + " was found.");
+            commandResultPrinter.printlnJsonOut("Cannot update subtask! No task with id: " + taskId + " was found.");
         });
 
     }

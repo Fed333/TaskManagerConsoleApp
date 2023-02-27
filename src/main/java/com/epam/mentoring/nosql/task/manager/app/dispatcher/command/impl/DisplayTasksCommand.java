@@ -29,6 +29,6 @@ public class DisplayTasksCommand implements ConsoleCommand {
         } else if (params.containsKey("--overdue")) {
             tasks = taskService.findOverdue();
         }
-       commandResultPrinter.printJsonOut(tasks);
+       commandResultPrinter.printlnJsonOut(tasks);
     }
 }

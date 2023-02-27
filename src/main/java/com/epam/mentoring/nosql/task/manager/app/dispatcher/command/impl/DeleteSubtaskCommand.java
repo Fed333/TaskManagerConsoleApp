@@ -21,11 +21,11 @@ public class DeleteSubtaskCommand implements ConsoleCommand {
     @Override
     public void process(Map<String, Object> params) {
         if (!params.containsKey("--taskId")){
-            commandResultPrinter.printStringOut("Cannot delete subtask! Missing task id.");
+            commandResultPrinter.printlnStringOut("Cannot delete subtask! Missing task id.");
             return;
         }
         if (!params.containsKey("--subtask")){
-            commandResultPrinter.printStringOut("Cannot delete subtask! Missing subtask number.");
+            commandResultPrinter.printlnStringOut("Cannot delete subtask! Missing subtask number.");
             return;
         }
         String taskId = params.get("--taskId").toString();
@@ -36,7 +36,7 @@ public class DeleteSubtaskCommand implements ConsoleCommand {
                     subtasks -> {
                         long start = System.nanoTime();
                         if (subtasks.size() < subtaskIndex){
-                            commandResultPrinter.printStringOut("Cannot delete subtask! Task with id: " + taskId + " doesn't have subtask with number: " + subtaskIndex);
+                            commandResultPrinter.printlnStringOut("Cannot delete subtask! Task with id: " + taskId + " doesn't have subtask with number: " + subtaskIndex);
                             return;
                         }
                         Subtask subtask = subtasks.remove(subtaskIndex);
@@ -47,12 +47,12 @@ public class DeleteSubtaskCommand implements ConsoleCommand {
                                 "Deleted subtask", subtask,
                                 "Time", TimeUnit.NANOSECONDS.toMillis(end - start) + " ms."
                         );
-                        commandResultPrinter.printJsonOut(result);
+                        commandResultPrinter.printlnJsonOut(result);
                     },
-                    () -> commandResultPrinter.printStringOut("Cannot delete subtask! Task with id: " + taskId + " doesn't have subtask with number: " + subtaskIndex)
+                    () -> commandResultPrinter.printlnStringOut("Cannot delete subtask! Task with id: " + taskId + " doesn't have subtask with number: " + subtaskIndex)
             );
         }, () -> {
-            commandResultPrinter.printJsonOut("Cannot delete subtask! No task with id: " + taskId + " was found.");
+            commandResultPrinter.printlnJsonOut("Cannot delete subtask! No task with id: " + taskId + " was found.");
         });
     }
 }

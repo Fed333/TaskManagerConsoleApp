@@ -6,15 +6,11 @@ import com.epam.mentoring.nosql.task.manager.app.entity.Category;
 import com.epam.mentoring.nosql.task.manager.app.entity.Task;
 import com.epam.mentoring.nosql.task.manager.app.service.TaskService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-
-import static java.util.Objects.nonNull;
 
 @RequiredArgsConstructor
 public class UpdateTaskCommand implements ConsoleCommand {
@@ -26,7 +22,7 @@ public class UpdateTaskCommand implements ConsoleCommand {
     @Override
     public void process(Map<String, Object> params) {
         if (!params.containsKey("--id")){
-            commandResultPrinter.printStringOut("Cannot update task! Missing id.");
+            commandResultPrinter.printlnStringOut("Cannot update task! Missing id.");
             return;
         }
         String id = params.get("--id").toString();
@@ -44,9 +40,9 @@ public class UpdateTaskCommand implements ConsoleCommand {
                     "Updated document", task,
                     "Time", TimeUnit.NANOSECONDS.toMillis(end - start) + " ms."
             );
-            commandResultPrinter.printJsonOut(result);
+            commandResultPrinter.printlnJsonOut(result);
         }, () -> {
-            commandResultPrinter.printStringOut("Cannot update task! No task with id: " + id + " was found.");
+            commandResultPrinter.printlnStringOut("Cannot update task! No task with id: " + id + " was found.");
         });
     }
 }

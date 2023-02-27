@@ -28,6 +28,6 @@ public class DisplaySubtaskCommand implements ConsoleCommand {
                 relatedSubtasks = subtaskService.findAll();
             }
         }
-        commandResultPrinter.printJsonOut(relatedSubtasks);
+        commandResultPrinter.printlnJsonOut(relatedSubtasks);
     }
 }

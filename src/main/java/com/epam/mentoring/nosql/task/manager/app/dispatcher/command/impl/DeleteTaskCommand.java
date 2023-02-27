@@ -20,7 +20,7 @@ public class DeleteTaskCommand implements ConsoleCommand {
     @Override
     public void process(Map<String, Object> params) {
         if (!params.containsKey("--id")){
-            commandResultPrinter.printStringOut("Cannot delete task! Missing id.");
+            commandResultPrinter.printlnStringOut("Cannot delete task! Missing id.");
             return;
         }
         String id = params.get("--id").toString();
@@ -33,9 +33,9 @@ public class DeleteTaskCommand implements ConsoleCommand {
                     "Deleted document", task,
                     "Time", TimeUnit.NANOSECONDS.toMillis(end - start) + " ms."
             );
-            commandResultPrinter.printJsonOut(result);
+            commandResultPrinter.printlnJsonOut(result);
         }, () -> {
-            commandResultPrinter.printStringOut("Cannot delete task! No task with id: " + id + " was found.");
+            commandResultPrinter.printlnStringOut("Cannot delete task! No task with id: " + id + " was found.");
         });
     }
 }

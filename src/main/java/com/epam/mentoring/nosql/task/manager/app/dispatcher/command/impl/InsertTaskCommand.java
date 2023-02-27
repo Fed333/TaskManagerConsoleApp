@@ -34,7 +34,7 @@ public class InsertTaskCommand implements ConsoleCommand {
                 .subtasks(new ArrayList<>())
                 .build();
         if (nonNull(task.getId()) && taskService.findById(task.getId()).isPresent()){
-            commandResultPrinter.printStringOut("Cannot insert! Task with id: " + task.getId() + " already exists.");
+            commandResultPrinter.printlnStringOut("Cannot insert! Task with id: " + task.getId() + " already exists.");
             return;
         }
         task = taskService.save(task);
@@ -44,6 +44,6 @@ public class InsertTaskCommand implements ConsoleCommand {
                 "Inserted document", task,
                 "Time", TimeUnit.NANOSECONDS.toMillis(end - start) + " ms."
         );
-        commandResultPrinter.printJsonOut(result);
+        commandResultPrinter.printlnJsonOut(result);
     }
 }

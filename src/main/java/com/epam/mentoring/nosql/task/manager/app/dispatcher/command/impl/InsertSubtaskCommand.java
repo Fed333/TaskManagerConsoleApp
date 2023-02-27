@@ -4,7 +4,6 @@ import com.epam.mentoring.nosql.task.manager.app.component.OutputCommandResultPr
 import com.epam.mentoring.nosql.task.manager.app.dispatcher.command.ConsoleCommand;
 import com.epam.mentoring.nosql.task.manager.app.entity.Subtask;
 import com.epam.mentoring.nosql.task.manager.app.entity.Task;
-import com.epam.mentoring.nosql.task.manager.app.service.SubtaskService;
 import com.epam.mentoring.nosql.task.manager.app.service.TaskService;
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +24,7 @@ public class InsertSubtaskCommand implements ConsoleCommand {
     @Override
     public void process(Map<String, Object> params) {
         if (!params.containsKey("--taskId")){
-            commandResultPrinter.printStringOut("Cannot insert subtask! Missing task id.");
+            commandResultPrinter.printlnStringOut("Cannot insert subtask! Missing task id.");
             return;
         }
         String taskId = params.get("--taskId").toString();
@@ -47,9 +46,9 @@ public class InsertSubtaskCommand implements ConsoleCommand {
                     "Added subtask", subtask,
                     "Time", TimeUnit.NANOSECONDS.toMillis(end - start) + " ms."
             );
-            commandResultPrinter.printJsonOut(result);
+            commandResultPrinter.printlnJsonOut(result);
         }, () -> {
-            commandResultPrinter.printJsonOut("Cannot insert subtask! No task with id: " + taskId + " was found.");
+            commandResultPrinter.printlnJsonOut("Cannot insert subtask! No task with id: " + taskId + " was found.");
         });
     }
 }
